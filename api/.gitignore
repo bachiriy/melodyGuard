@@ -36,3 +36,4 @@ mvnw.cmd
 target/
 mvnw*
 .mvn/
+README.md
