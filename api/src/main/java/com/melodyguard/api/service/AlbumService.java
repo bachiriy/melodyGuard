@@ -37,22 +37,10 @@ public class AlbumService {
             .collect(Collectors.toList());
     }
 
-    private List<String> getSongsOfAlbum(AlbumResponse album){
-        if(album.getId() == null) log.error("album id null.");
-
-        List<String> songIds = new ArrayList<String>();
-        List<Song> songs = songRepository.findAll();
-
-        songs.forEach(song -> {
-            if (song.getAlbum().getId().equalsIgnoreCase(album.getId())) {
-                songIds.add(song.getId());
-            }
-        });
-        return songIds;
-    }
-
     public AlbumResponse getAlbumById(String id){
-        return repository.findById(id).map(mapper::toDto).orElseThrow(() -> new ElementNotFoundException("Album", id));
+        AlbumResponse albumResponse = repository.findById(id).map(mapper::toDto).orElseThrow(() -> new ElementNotFoundException("Album", id));
+        albumResponse.setSongIds(getSongsOfAlbum(albumResponse));
+        return albumResponse;
     }
 
     public AlbumResponse createAlbum(AlbumRequest albumRequest){
@@ -78,16 +66,6 @@ public class AlbumService {
         
     }
 
-    // public Album addSongToAlbum(String albumId, Song newSong){
-    //     Album dbAlbum = findById(albumId);
-
-    //     List<Song> currentSongs = dbAlbum.getSongs();
-    //     currentSongs.add(newSong);
-
-    //     dbAlbum.setSongs(currentSongs);
-    //     return repository.save(dbAlbum);        
-    // }
-
     public ResponseEntity<String> delete(String id){
         getAlbumById(id); // fails when unvalid id
         repository.deleteById(id);
@@ -96,6 +74,20 @@ public class AlbumService {
 
     public Album findById(String id){
         return repository.findById(id).orElseThrow(() -> new ElementNotFoundException("Album", id));
+    }
+
+    private List<String> getSongsOfAlbum(AlbumResponse album){
+        if(album.getId() == null) log.error("album id null.");
+
+        List<String> songIds = new ArrayList<String>();
+        List<Song> songs = songRepository.findAll();
+
+        songs.forEach(song -> {
+            if (song.getAlbum().getId().equalsIgnoreCase(album.getId())) {
+                songIds.add(song.getId());
+            }
+        });
+        return songIds;
     }
     
 }
