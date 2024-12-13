@@ -1,6 +1,10 @@
 package com.melodyguard.api.dto.album;
 
+import java.util.List;
+
 import javax.validation.constraints.NotNull;
+
+import com.melodyguard.api.entity.Song;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,4 +26,6 @@ public class AlbumRequest {
 
     @NotNull(message = "you must include the 'year' of the album")
     Integer year;
+
+    List<Song> songs;
 }

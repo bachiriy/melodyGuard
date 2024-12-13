@@ -1,9 +1,13 @@
 package com.melodyguard.api.entity;
 
 
+import java.util.List;
+
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.*;
@@ -15,14 +19,19 @@ import lombok.*;
 @Builder
 public class Album {
     @Id
-    String id;
+    private String id;
 
     @NotNull
-    String title;
+    private String title;
 
     @NotNull
-    String artist;
+    private String artist;
 
     @NotNull
-    Integer year;
+    private Integer year;
+
+    // @ReadOnlyProperty
+    // @DocumentReference(lookup="{'publisher':?#{#self._id} }")
+    @DBRef
+    private List<Song> songs;
 }

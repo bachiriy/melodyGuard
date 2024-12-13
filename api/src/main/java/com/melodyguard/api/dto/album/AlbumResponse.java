@@ -1,5 +1,7 @@
 package com.melodyguard.api.dto.album;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,4 +16,5 @@ public class AlbumResponse {
     String title;
     String artist;
     Integer year;
+    List<String> songIds;
 }
