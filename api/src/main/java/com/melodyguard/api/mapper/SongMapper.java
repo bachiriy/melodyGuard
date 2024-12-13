@@ -6,7 +6,6 @@ import org.mapstruct.Mapping;
 import com.melodyguard.api.dto.song.SongRequest;
 import com.melodyguard.api.dto.song.SongResponse;
 import com.melodyguard.api.entity.Song;
-import com.melodyguard.api.service.AlbumService;
 
 @Mapper(componentModel = "spring")
 public interface SongMapper {

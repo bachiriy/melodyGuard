@@ -20,7 +20,7 @@ public class AlbumController {
 
 
     @GetMapping("/albums")
-    public List<AlbumResponse> getALLBums(){ // got it ? :)
+    public List<AlbumResponse> getALLBums(){
         return service.getAllAlbums();
     }
 

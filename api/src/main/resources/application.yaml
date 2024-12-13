@@ -1,8 +1,7 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/melodyguard # TODO: try to delete album table from test db with mongosh shell
-      # ddl-auto: create-drop TODO:find a way to auto create-drop db, if possible
+      uri: mongodb://localhost:27017/melodyguard 
   security:
     user:
       name: user

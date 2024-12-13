@@ -1,7 +1,6 @@
 package com.melodyguard.api.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,13 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.melodyguard.api.dto.album.AlbumRequest;
-import com.melodyguard.api.dto.album.AlbumResponse;
-import com.melodyguard.api.dto.song.SongResponse;
+import com.melodyguard.api.dto.album.*;
 import com.melodyguard.api.entity.Album;
 import com.melodyguard.api.entity.Song;
-import com.melodyguard.api.exception.ElementAlreadyExistException;
-import com.melodyguard.api.exception.ElementNotFoundException;
+import com.melodyguard.api.exception.*;
 import com.melodyguard.api.mapper.AlbumMapper;
 import com.melodyguard.api.repository.AlbumRepository;
 import com.melodyguard.api.repository.SongRepository;
@@ -32,14 +28,9 @@ public class AlbumService {
     private static final Logger log = LoggerFactory.getLogger(AlbumService.class);
 
     public List<AlbumResponse> getAllAlbums() {
-
-       
-        List<String> songIds = new ArrayList<String>();
-
         return repository.findAll().stream()
             .map(album -> mapper.toDto(album))
             .map(album -> {
-               
                 album.setSongIds(getSongsOfAlbum(album));
                 return album;
             })
@@ -51,15 +42,11 @@ public class AlbumService {
 
         List<String> songIds = new ArrayList<String>();
         List<Song> songs = songRepository.findAll();
-        
 
         songs.forEach(song -> {
-            log.info("\n\n\nINSIDE FOREACH:"+ song.getAlbum().getId() +" \n");
             if (song.getAlbum().getId().equalsIgnoreCase(album.getId())) {
                 songIds.add(song.getId());
-                log.info("\n\n\nINSIDE IF STATEMENT\n\n");
             }
-            log.info("\n\nOUTSIDE IF STATEMENT, AND AT THE END OF FOREACH: "+ album.getId() +"\n\n");
         });
         return songIds;
     }
@@ -84,7 +71,6 @@ public class AlbumService {
                 .artist(albumToSave.getArtist() != null ? albumToSave.getArtist() : savedAlbum.getArtist())
                 .title(albumToSave.getTitle() != null ? albumToSave.getTitle() : savedAlbum.getTitle())
                 .year(albumToSave.getYear() != null ? albumToSave.getYear() : savedAlbum.getYear())
-                // .songs(albumToSave.getSongs() != null ? albumToSave.getSongs() : savedAlbum.getSongs())
                 .build()
         );
 
@@ -108,7 +94,6 @@ public class AlbumService {
         return ResponseEntity.ok(String.format("Album with Id `%s` deleted successfully.", id));
     }
 
-    // must be public, cuz it's used by the song mapper
     public Album findById(String id){
         return repository.findById(id).orElseThrow(() -> new ElementNotFoundException("Album", id));
     }
