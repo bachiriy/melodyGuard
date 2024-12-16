@@ -14,7 +14,7 @@ import com.melodyguard.api.dto.album.AlbumResponse;
 import com.melodyguard.api.service.AlbumService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/user")
 public class AlbumController {
     @Autowired AlbumService service;
 

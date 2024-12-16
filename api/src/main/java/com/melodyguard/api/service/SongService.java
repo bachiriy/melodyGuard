@@ -38,7 +38,7 @@ public class SongService {
     }
 
     public SongResponse updateSong(String songId, SongRequest dto){
-        getSongById(songId); // fail if invalid id
+        getSongById(songId); // fails if song not found
 
         Song dbSong = findById(songId);
         Song dtoSong = mapper.toEntity(dto); // TODO: make this less code

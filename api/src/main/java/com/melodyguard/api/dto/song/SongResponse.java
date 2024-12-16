@@ -1,5 +1,7 @@
 package com.melodyguard.api.dto.song;
 
+import com.melodyguard.api.dto.album.AlbumResponse;
+
 import lombok.*;
 
 @Data
@@ -11,7 +13,7 @@ public class SongResponse {
     String title;
     Integer duration;
     Integer track_number;
-    String album_id;
+    AlbumResponse album;
 
     @Override
     public String toString(){

@@ -2,7 +2,9 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/melodyguard 
-  security:
-    user:
-      name: user
-      password: password
+  # security:
+  #   user:
+  #     name: user
+  #     password: password
+
+jwt_secret: Kifwa9@&#&@!@FGaD8FaASJjfAdsoA2Asod3u4u9fd@*&#@@!MDSFD"
