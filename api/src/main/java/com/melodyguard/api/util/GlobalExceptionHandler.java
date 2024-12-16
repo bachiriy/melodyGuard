@@ -99,6 +99,17 @@ public class GlobalExceptionHandler {
             .status(HttpStatus.BAD_GATEWAY.name())
             .errors(Arrays.asList(ex.getMessage()))
             .build();
-    }    
+    }
+    
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(RuntimeException.class)
+    public Response handleRuntimeException(RuntimeException ex) {
+        log.info(ex.getMessage());
+        return Response.builder()
+            .code(HttpStatus.BAD_REQUEST.value())
+            .status(HttpStatus.BAD_REQUEST.name())
+            .errors(Arrays.asList(ex.getMessage()))
+            .build();
+    }   
 }
 

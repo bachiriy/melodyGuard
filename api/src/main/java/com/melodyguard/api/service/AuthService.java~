@@ -1,0 +1,45 @@
+package com.melodyguard.api.service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.melodyguard.api.dto.auth.UserRequest;
+import com.melodyguard.api.dto.auth.LoginRequest;
+import com.melodyguard.api.dto.auth.UserResponse;
+import com.melodyguard.api.exception.ElementAlreadyExistException;
+import com.melodyguard.api.exception.ElementNotFoundException;
+import com.melodyguard.api.mapper.UserMapper;
+import com.melodyguard.api.repository.UserRepository;
+
+@Service
+public class AuthService {
+    @Autowired UserRepository repository;
+    @Autowired UserMapper mapper;
+
+
+    public UserResponse register(UserRequest userRequest){
+        if (!repository.existsByusername(userRequest.getusername())) {
+            Auth toSaveUser = mapper.toEntity(userRequest);
+            Auth savedUser = repository.save(toSaveUser);
+            return mapper.toDto(savedUser);
+        } else throw new ElementAlreadyExistException("User", null);
+    }
+
+    public UserResponse login(UserRequest userRequest){
+        if (!repository.existsByusername(userRequest.getusername())) {
+            Auth toSaveUser = mapper.toEntity(userRequest);
+            Auth savedUser = repository.save(toSaveUser);
+            return mapper.toDto(savedUser);
+        } else throw new ElementAlreadyExistException("User", null);
+    }
+
+    public ResponseEntity<String> logout(){
+        //getAuthById(id); 
+        //repository.deleteById(id);
+        return ResponseEntity.ok(String.format("logout success, token now no longer valid."));
+    }
+}
