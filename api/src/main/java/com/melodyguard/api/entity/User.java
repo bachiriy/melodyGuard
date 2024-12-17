@@ -32,7 +32,7 @@ public class User {
     private String password;
 
     
-    List<Role> roles;
+    // List<Role> roles;
 
     @Override
     public String toString(){

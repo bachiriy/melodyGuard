@@ -33,6 +33,7 @@ public class AuthController {
     public Map<String, Object> registerHandler(@Valid @RequestBody User user){
         String encodedPass = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPass);
+        // user.setRoles(Arrays.asList());
         user = userRepo.save(user);
         String token = jwtUtil.generateToken(user.getEmail());
         return Collections.singletonMap("jwt-token", token);
