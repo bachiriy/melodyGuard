@@ -18,6 +18,6 @@ public class Role {
 
     private String role;
 
-    private List<User> users;
+    // private List<User> users;
 
 }

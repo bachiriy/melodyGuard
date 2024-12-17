@@ -62,8 +62,7 @@ public class AlbumService {
                 .build()
         );
 
-        return mapper.toDto(updatedAlbum);
-        
+        return mapper.toDto(updatedAlbum);   
     }
 
     public ResponseEntity<String> delete(String id){
