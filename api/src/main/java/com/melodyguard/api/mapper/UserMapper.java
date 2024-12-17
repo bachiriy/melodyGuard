@@ -1,6 +1,7 @@
 package com.melodyguard.api.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import com.melodyguard.api.dto.user.UserRequest;
 import com.melodyguard.api.dto.user.UserResponse;

@@ -1,6 +1,6 @@
 package com.melodyguard.api.dto.user;
 
-import java.util.List;
+import com.melodyguard.api.entity.Role;
 
 import lombok.*;
 
@@ -13,6 +13,5 @@ public class UserResponse {
     String id;
     String email;
     String username;
-    List<String> roles;
-    String last_active;
+    Role role;
 }

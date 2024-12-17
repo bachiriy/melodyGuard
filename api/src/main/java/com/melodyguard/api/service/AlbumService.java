@@ -12,11 +12,13 @@ import org.springframework.stereotype.Service;
 
 import com.melodyguard.api.dto.album.*;
 import com.melodyguard.api.entity.Album;
+import com.melodyguard.api.entity.Role;
 import com.melodyguard.api.entity.Song;
 import com.melodyguard.api.exception.*;
 import com.melodyguard.api.mapper.AlbumMapper;
 import com.melodyguard.api.repository.AlbumRepository;
 import com.melodyguard.api.repository.SongRepository;
+import com.melodyguard.api.util.AuthorizationAccess;
 
 @Service
 public class AlbumService {
@@ -44,6 +46,10 @@ public class AlbumService {
     }
 
     public AlbumResponse createAlbum(AlbumRequest albumRequest){
+        if (!AuthorizationAccess.hasRole(Role.ADMIN)) {
+            throw new UnauthorizedAccessException("Unauthorized Access, only admins can perform this action.");
+        }
+        
         if (!repository.existsByTitle(albumRequest.getTitle())) {
             Album savedAlbum = repository.save(mapper.toEntity(albumRequest));
             return mapper.toDto(savedAlbum);
@@ -51,6 +57,11 @@ public class AlbumService {
     }
 
     public AlbumResponse updateAlbum(String albumId, AlbumRequest dto){
+
+        if (!AuthorizationAccess.hasRole(Role.ADMIN)) {
+            throw new UnauthorizedAccessException("Unauthorized Access, only admins can perform this action.");
+        }
+
         Album savedAlbum = findById(albumId); // fail if invalid id
         Album albumToSave = mapper.toEntity(dto);
         Album updatedAlbum = repository.save(
@@ -66,6 +77,11 @@ public class AlbumService {
     }
 
     public ResponseEntity<String> delete(String id){
+
+        if (!AuthorizationAccess.hasRole(Role.ADMIN)) {
+            throw new UnauthorizedAccessException("Unauthorized Access, only admins can perform this action.");
+        }
+
         getAlbumById(id); // fails when unvalid id
         repository.deleteById(id);
         return ResponseEntity.ok(String.format("Album with Id `%s` deleted successfully.", id));

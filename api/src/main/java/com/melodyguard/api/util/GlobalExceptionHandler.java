@@ -100,10 +100,21 @@ public class GlobalExceptionHandler {
             .errors(Arrays.asList(ex.getMessage()))
             .build();
     }
-    
+
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(RuntimeException.class)
-    public Response handleRuntimeException(RuntimeException ex) {
+    @ExceptionHandler(InvalidCredentioalsException.class)
+    public Response handleInvalidCredentioalsException(InvalidCredentioalsException ex) {
+        log.info(ex.getMessage());
+        return Response.builder()
+            .code(HttpStatus.BAD_REQUEST.value())
+            .status(HttpStatus.BAD_REQUEST.name())
+            .errors(Arrays.asList(ex.getMessage()))
+            .build();
+    }   
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(UnauthorizedAccessException.class)
+    public Response handleUnauthorizedAccessException(UnauthorizedAccessException ex) {
         log.info(ex.getMessage());
         return Response.builder()
             .code(HttpStatus.BAD_REQUEST.value())

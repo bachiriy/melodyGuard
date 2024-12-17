@@ -9,11 +9,14 @@ import org.springframework.stereotype.Service;
 
 import com.melodyguard.api.dto.song.SongRequest;
 import com.melodyguard.api.dto.song.SongResponse;
+import com.melodyguard.api.entity.Role;
 import com.melodyguard.api.entity.Song;
 import com.melodyguard.api.exception.ElementAlreadyExistException;
 import com.melodyguard.api.exception.ElementNotFoundException;
+import com.melodyguard.api.exception.UnauthorizedAccessException;
 import com.melodyguard.api.mapper.SongMapper;
 import com.melodyguard.api.repository.SongRepository;
+import com.melodyguard.api.util.AuthorizationAccess;
 
 @Service
 public class SongService {
@@ -29,6 +32,10 @@ public class SongService {
     }
 
     public SongResponse createSong(SongRequest songRequest){
+        if (!AuthorizationAccess.hasRole(Role.ADMIN)) {
+            throw new UnauthorizedAccessException("Unauthorized Access, only admins can perform this action.");
+        }
+        
         if (!repository.existsByTitle(songRequest.getTitle())) {
             Song toSaveSong = mapper.toEntity(songRequest);
             Song savedSong = repository.save(toSaveSong);
@@ -38,6 +45,10 @@ public class SongService {
     }
 
     public SongResponse updateSong(String songId, SongRequest dto){
+        if (!AuthorizationAccess.hasRole(Role.ADMIN)) {
+            throw new UnauthorizedAccessException("Unauthorized Access, only admins can perform this action.");
+        }
+
         getSongById(songId); // fails if song not found
 
         Song dbSong = findById(songId);
@@ -58,6 +69,10 @@ public class SongService {
     }
 
     public ResponseEntity<String> delete(String id){
+        if (!AuthorizationAccess.hasRole(Role.ADMIN)) {
+            throw new UnauthorizedAccessException("Unauthorized Access, only admins can perform this action.");
+        }
+
         getSongById(id); // fails when unvalid id
         repository.deleteById(id);
         return ResponseEntity.ok(String.format("Song with Id `%s` deleted successfully.", id));

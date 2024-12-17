@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.melodyguard.api.dto.auth.LoginRequest;
+import com.melodyguard.api.entity.Role;
 import com.melodyguard.api.entity.User;
+import com.melodyguard.api.exception.InvalidCredentioalsException;
 import com.melodyguard.api.repository.UserRepository;
 import com.melodyguard.api.security.JWTUtil;
 
@@ -33,9 +36,9 @@ public class AuthController {
     public Map<String, Object> registerHandler(@Valid @RequestBody User user){
         String encodedPass = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPass);
-        // user.setRoles(Arrays.asList());
+        user.setRole(Role.USER);
         user = userRepo.save(user);
-        String token = jwtUtil.generateToken(user.getEmail());
+        String token = jwtUtil.generateToken(user.getEmail(), user.getRole());
         return Collections.singletonMap("jwt-token", token);
     }
 
@@ -45,11 +48,17 @@ public class AuthController {
             UsernamePasswordAuthenticationToken authInputToken =
                     new UsernamePasswordAuthenticationToken(body.getEmail(), body.getPassword());
 
-            authManager.authenticate(authInputToken);
+            User userByEmail = userRepo.findByEmail(body.getEmail()).get();
 
-            String token = jwtUtil.generateToken(body.getEmail());
+            
+            if (passwordEncoder.matches(body.getPassword(), userByEmail.getPassword())) {
+                authManager.authenticate(authInputToken);
+                String token = jwtUtil.generateToken(body.getEmail(), userByEmail.getRole());
+                return Collections.singletonMap("jwt-token", token);
+            } else throw new InvalidCredentioalsException("Invalid credentioals, invalid password.");
 
-            return Collections.singletonMap("jwt-token", token);
+
+
         }catch (AuthenticationException authExc){
             throw new RuntimeException("Invalid Login Credentials");
         }
