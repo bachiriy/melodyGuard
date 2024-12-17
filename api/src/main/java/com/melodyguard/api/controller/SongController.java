@@ -1,10 +1,9 @@
 package com.melodyguard.api.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +17,12 @@ public class SongController {
 
 
     @GetMapping("/songs")
-    public List<SongResponse> getAllSongs(){
-        return service.getAllSongs();
+    public Page<SongResponse> getAllSongs(
+        @RequestParam(defaultValue = "1") int page,
+        @RequestParam(defaultValue = "3") int size,
+        @RequestParam(required = false) String title
+    ){
+        return service.getAllSongs(page, size, title);
     }
 
     @GetMapping("/songs/{id}")

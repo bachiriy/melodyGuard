@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.melodyguard.api.dto.role.RoleRequest;
-import com.melodyguard.api.dto.user.UserRequest;
 import com.melodyguard.api.dto.user.UserResponse;
 import com.melodyguard.api.entity.Role;
 import com.melodyguard.api.entity.User;

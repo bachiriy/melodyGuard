@@ -2,11 +2,13 @@ package com.melodyguard.api.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -29,14 +31,35 @@ public class AlbumService {
 
     private static final Logger log = LoggerFactory.getLogger(AlbumService.class);
 
-    public List<AlbumResponse> getAllAlbums() {
-        return repository.findAll().stream()
-            .map(album -> mapper.toDto(album))
-            .map(album -> {
-                album.setSongIds(getSongsOfAlbum(album));
+    public Page<AlbumResponse> getAllAlbums(int page, int size, String title, String artist, Integer year) {
+
+        Pageable paging = PageRequest.of(page - 1, size);
+        
+        Page<Album> albumPages;
+        if (title != null) {
+            albumPages = repository.findByTitleContainingIgnoreCase(title, paging);
+        } else if (artist != null) {
+            logg(artist);
+            albumPages = repository.findByArtistContainingIgnoreCase(artist, paging);
+        } else if (year != null) {
+            albumPages = repository.findByYear(year, paging);
+        } else {
+            albumPages = repository.findAll(paging);
+        }
+        
+        return albumPages
+        .map(album -> mapper.toDto(album))
+        .map(album -> {
+            album.setSongIds(getSongsOfAlbum(album));
                 return album;
-            })
-            .collect(Collectors.toList());
+            }
+        );
+    }
+
+    private void logg(Object obj){
+        log.info("\n\n" + 
+        obj
+        + "\n\n");
     }
 
     public AlbumResponse getAlbumById(String id){

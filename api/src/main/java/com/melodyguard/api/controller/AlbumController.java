@@ -1,10 +1,9 @@
 package com.melodyguard.api.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,8 +19,14 @@ public class AlbumController {
 
 
     @GetMapping("/albums")
-    public List<AlbumResponse> getALLBums(){
-        return service.getAllAlbums();
+    public Page<AlbumResponse> getALLBums(
+        @RequestParam(defaultValue = "1") int page,
+        @RequestParam(defaultValue = "3") int size,
+        @RequestParam(required = false) String title,
+        @RequestParam(required = false) String artist,
+        @RequestParam(required = false) Integer year
+    ){
+        return service.getAllAlbums(page, size, title, artist, year);
     }
 
     @GetMapping("/albums/{id}")

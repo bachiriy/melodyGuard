@@ -1,9 +1,9 @@
 package com.melodyguard.api.service;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +23,17 @@ public class SongService {
     @Autowired SongRepository repository;
     @Autowired SongMapper mapper;
 
-    public List<SongResponse> getAllSongs(){
-        return repository.findAll().stream().map(song -> mapper.toDto(song)).collect(Collectors.toList());
+    public Page<SongResponse> getAllSongs(int page, int size, String title){
+
+        Pageable pageable = PageRequest.of(page - 1, size);
+
+        Page<Song> songs;
+
+        if (title != null) {
+            songs = repository.findByTitleContainingIgnoreCase(title, pageable);
+        } else songs = repository.findAll(pageable);
+        
+        return songs.map(song -> mapper.toDto(song));
     }
 
     public SongResponse getSongById(String id){
@@ -49,10 +58,8 @@ public class SongService {
             throw new UnauthorizedAccessException("Unauthorized Access, only admins can perform this action.");
         }
 
-        getSongById(songId); // fails if song not found
-
         Song dbSong = findById(songId);
-        Song dtoSong = mapper.toEntity(dto); // TODO: make this less code
+        Song dtoSong = mapper.toEntity(dto);
 
         Song updatedSong = repository.save(
             Song.builder()
