@@ -1,10 +1,10 @@
-package com.melodyguard.api;
+package io.benfill.isdb;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MelodyGuardApiApplicationTests {
+class IsdbApplicationTests {
 
 	@Test
 	void contextLoads() {
