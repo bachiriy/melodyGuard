@@ -7,15 +7,15 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import io.benfill.isdb.dto.request.SongDtoReq;
-import io.benfill.isdb.dto.response.SongDtoResp;
-import io.benfill.isdb.exception.ResourceNotFoundException;
-import io.benfill.isdb.mapper.SongMapper;
-import io.benfill.isdb.model.Album;
-import io.benfill.isdb.model.Song;
-import io.benfill.isdb.repository.SongRepository;
-import io.benfill.isdb.service.IAlbumService;
-import io.benfill.isdb.service.ISongService;
+import com.melodyguard.api.dto.request.SongDtoReq;
+import com.melodyguard.api.dto.response.SongDtoResp;
+import com.melodyguard.api.exception.ResourceNotFoundException;
+import com.melodyguard.api.mapper.SongMapper;
+import com.melodyguard.api.model.Album;
+import com.melodyguard.api.model.Song;
+import com.melodyguard.api.repository.SongRepository;
+import com.melodyguard.api.service.IAlbumService;
+import com.melodyguard.api.service.ISongService;
 
 @Service
 public class SongService implements ISongService {

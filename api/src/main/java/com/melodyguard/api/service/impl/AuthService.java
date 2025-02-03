@@ -17,21 +17,21 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import io.benfill.isdb.dto.request.LoginDto;
-import io.benfill.isdb.dto.request.UserDtoReq;
-import io.benfill.isdb.dto.response.DeleteResp;
-import io.benfill.isdb.dto.response.UserDtoResp;
-import io.benfill.isdb.exception.CustomDuplicateKeyException;
-import io.benfill.isdb.exception.ResourceNotFoundException;
-import io.benfill.isdb.mapper.UserMapper;
-import io.benfill.isdb.model.AuthToken;
-import io.benfill.isdb.model.Role;
-import io.benfill.isdb.model.RoleEnum;
-import io.benfill.isdb.model.User;
-import io.benfill.isdb.repository.RoleRepository;
-import io.benfill.isdb.repository.UserRepository;
-import io.benfill.isdb.security.jwt.TokenProvider;
-import io.benfill.isdb.service.IAuthService;
+import com.melodyguard.api.dto.request.LoginDto;
+import com.melodyguard.api.dto.request.UserDtoReq;
+import com.melodyguard.api.dto.response.DeleteResp;
+import com.melodyguard.api.dto.response.UserDtoResp;
+import com.melodyguard.api.exception.CustomDuplicateKeyException;
+import com.melodyguard.api.exception.ResourceNotFoundException;
+import com.melodyguard.api.mapper.UserMapper;
+import com.melodyguard.api.model.AuthToken;
+import com.melodyguard.api.model.Role;
+import com.melodyguard.api.model.RoleEnum;
+import com.melodyguard.api.model.User;
+import com.melodyguard.api.repository.RoleRepository;
+import com.melodyguard.api.repository.UserRepository;
+import com.melodyguard.api.security.jwt.TokenProvider;
+import com.melodyguard.api.service.IAuthService;
 
 @Service
 public class AuthService implements IAuthService {

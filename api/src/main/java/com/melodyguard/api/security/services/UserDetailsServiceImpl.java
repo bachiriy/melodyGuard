@@ -9,8 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import io.benfill.isdb.model.User;
-import io.benfill.isdb.repository.UserRepository;
+import com.melodyguard.api.model.User;
+import com.melodyguard.api.repository.UserRepository;
 
 @Component
 public class UserDetailsServiceImpl implements UserDetailsService {

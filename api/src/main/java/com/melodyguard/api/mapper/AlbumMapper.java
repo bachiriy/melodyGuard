@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.mapstruct.Mapper;
 
-import io.benfill.isdb.dto.request.AlbumDtoReq;
-import io.benfill.isdb.dto.response.AlbumDtoResp;
-import io.benfill.isdb.model.Album;
+import com.melodyguard.api.dto.request.AlbumDtoReq;
+import com.melodyguard.api.dto.response.AlbumDtoResp;
+import com.melodyguard.api.model.Album;
 
 @Mapper(componentModel = "spring")
 public interface AlbumMapper {

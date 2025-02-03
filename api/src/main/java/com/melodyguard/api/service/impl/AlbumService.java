@@ -7,15 +7,15 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import io.benfill.isdb.dto.request.AlbumDtoReq;
-import io.benfill.isdb.dto.response.AlbumDtoResp;
-import io.benfill.isdb.exception.ResourceNotFoundException;
-import io.benfill.isdb.exception.ResourceValidationException;
-import io.benfill.isdb.exception.SearchTypeException;
-import io.benfill.isdb.mapper.AlbumMapper;
-import io.benfill.isdb.model.Album;
-import io.benfill.isdb.repository.AlbumRepository;
-import io.benfill.isdb.service.IAlbumService;
+import com.melodyguard.api.dto.request.AlbumDtoReq;
+import com.melodyguard.api.dto.response.AlbumDtoResp;
+import com.melodyguard.api.exception.ResourceNotFoundException;
+import com.melodyguard.api.exception.ResourceValidationException;
+import com.melodyguard.api.exception.SearchTypeException;
+import com.melodyguard.api.mapper.AlbumMapper;
+import com.melodyguard.api.model.Album;
+import com.melodyguard.api.repository.AlbumRepository;
+import com.melodyguard.api.service.IAlbumService;
 
 @Service
 public class AlbumService implements IAlbumService {

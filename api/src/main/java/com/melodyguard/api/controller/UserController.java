@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.benfill.isdb.dto.request.RoleDto;
-import io.benfill.isdb.service.impl.UserService;
+import com.melodyguard.api.dto.request.RoleDto;
+import com.melodyguard.api.service.impl.UserService;
 
 @RestController
 @RequestMapping("/api/admin/users")

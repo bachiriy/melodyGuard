@@ -3,7 +3,7 @@ package com.melodyguard.api.dto.response;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import io.benfill.isdb.model.Song;
+import com.melodyguard.api.model.Song;
 import lombok.Data;
 
 @Data

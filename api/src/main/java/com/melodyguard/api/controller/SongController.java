@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.benfill.isdb.dto.request.SongDtoReq;
-import io.benfill.isdb.dto.response.DeleteResp;
-import io.benfill.isdb.service.ISongService;
+import com.melodyguard.api.dto.request.SongDtoReq;
+import com.melodyguard.api.dto.response.DeleteResp;
+import com.melodyguard.api.service.ISongService;
 
 @RestController
 @RequestMapping("/api")

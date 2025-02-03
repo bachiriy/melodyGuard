@@ -2,7 +2,7 @@ package com.melodyguard.api.dto.response;
 
 import java.time.LocalDateTime;
 
-import io.benfill.isdb.model.Album;
+import com.melodyguard.api.model.Album;
 import lombok.Data;
 
 @Data

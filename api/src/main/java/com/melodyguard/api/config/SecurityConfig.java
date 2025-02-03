@@ -19,8 +19,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import io.benfill.isdb.security.jwt.JwtAuthenticationFilter;
-import io.benfill.isdb.security.services.UserDetailsServiceImpl;
+import com.melodyguard.api.security.jwt.JwtAuthenticationFilter;
+import com.melodyguard.api.security.services.UserDetailsServiceImpl;
 
 @EnableWebSecurity
 @Configuration

@@ -5,9 +5,9 @@ import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import io.benfill.isdb.dto.request.UserDtoReq;
-import io.benfill.isdb.dto.response.UserDtoResp;
-import io.benfill.isdb.model.User;
+import com.melodyguard.api.dto.request.UserDtoReq;
+import com.melodyguard.api.dto.response.UserDtoResp;
+import com.melodyguard.api.model.User;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {

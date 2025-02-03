@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import io.benfill.isdb.dto.request.AlbumDtoReq;
-import io.benfill.isdb.dto.response.AlbumDtoResp;
-import io.benfill.isdb.model.Album;
+import com.melodyguard.api.dto.request.AlbumDtoReq;
+import com.melodyguard.api.dto.response.AlbumDtoResp;
+import com.melodyguard.api.model.Album;
 
 @Service
 public interface IAlbumService {

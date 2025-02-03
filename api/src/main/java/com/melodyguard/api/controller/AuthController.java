@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.benfill.isdb.dto.request.LoginDto;
-import io.benfill.isdb.dto.request.UserDtoReq;
-import io.benfill.isdb.dto.response.DeleteResp;
-import io.benfill.isdb.service.IAuthService;
+import com.melodyguard.api.dto.request.LoginDto;
+import com.melodyguard.api.dto.request.UserDtoReq;
+import com.melodyguard.api.dto.response.DeleteResp;
+import com.melodyguard.api.service.IAuthService;
 
 @RestController
 @RequestMapping("/api/auth")

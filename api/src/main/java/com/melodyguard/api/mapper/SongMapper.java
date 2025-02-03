@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.mapstruct.Mapper;
 
-import io.benfill.isdb.dto.request.SongDtoReq;
-import io.benfill.isdb.dto.response.SongDtoResp;
-import io.benfill.isdb.model.Song;
+import com.melodyguard.api.dto.request.SongDtoReq;
+import com.melodyguard.api.dto.response.SongDtoResp;
+import com.melodyguard.api.model.Song;
 
 @Mapper(componentModel = "spring")
 public interface SongMapper {

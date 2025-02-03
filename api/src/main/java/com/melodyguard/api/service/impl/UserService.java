@@ -8,16 +8,16 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import io.benfill.isdb.dto.request.RoleDto;
-import io.benfill.isdb.dto.response.UserDtoResp;
-import io.benfill.isdb.exception.ResourceNotFoundException;
-import io.benfill.isdb.mapper.UserMapper;
-import io.benfill.isdb.model.Role;
-import io.benfill.isdb.model.RoleEnum;
-import io.benfill.isdb.model.User;
-import io.benfill.isdb.repository.RoleRepository;
-import io.benfill.isdb.repository.UserRepository;
-import io.benfill.isdb.service.IUserService;
+import com.melodyguard.api.dto.request.RoleDto;
+import com.melodyguard.api.dto.response.UserDtoResp;
+import com.melodyguard.api.exception.ResourceNotFoundException;
+import com.melodyguard.api.mapper.UserMapper;
+import com.melodyguard.api.model.Role;
+import com.melodyguard.api.model.RoleEnum;
+import com.melodyguard.api.model.User;
+import com.melodyguard.api.repository.RoleRepository;
+import com.melodyguard.api.repository.UserRepository;
+import com.melodyguard.api.service.IUserService;
 
 @Service
 public class UserService implements IUserService {

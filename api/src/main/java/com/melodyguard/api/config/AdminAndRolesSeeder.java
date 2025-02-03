@@ -10,11 +10,11 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import io.benfill.isdb.model.Role;
-import io.benfill.isdb.model.RoleEnum;
-import io.benfill.isdb.model.User;
-import io.benfill.isdb.repository.RoleRepository;
-import io.benfill.isdb.repository.UserRepository;
+import com.melodyguard.api.model.Role;
+import com.melodyguard.api.model.RoleEnum;
+import com.melodyguard.api.model.User;
+import com.melodyguard.api.repository.RoleRepository;
+import com.melodyguard.api.repository.UserRepository;
 
 @Component
 public class AdminAndRolesSeeder implements ApplicationRunner {

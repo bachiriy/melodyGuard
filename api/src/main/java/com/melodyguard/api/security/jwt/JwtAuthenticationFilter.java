@@ -16,7 +16,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import io.benfill.isdb.security.services.UserDetailsServiceImpl;
+import com.melodyguard.api.security.services.UserDetailsServiceImpl;
 import io.jsonwebtoken.ExpiredJwtException;
 
 @Component
