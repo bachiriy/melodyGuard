@@ -9,8 +9,8 @@
 		<version>2.7.18</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>io.benfill</groupId>
-	<artifactId>isdb</artifactId>
+	<groupId>com.melodyguard</groupId>
+	<artifactId>api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>isdb</name>
 	<description>Internet Song Database</description>
@@ -108,7 +108,6 @@
 			<artifactId>jaxb-api</artifactId>
 		</dependency>
 
-		<!-- JAXB Runtime -->
 		<dependency>
 			<groupId>org.glassfish.jaxb</groupId>
 			<artifactId>jaxb-runtime</artifactId>
