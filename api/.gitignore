@@ -31,9 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-HELP.md
-mvnw.cmd
-target/
-mvnw*
-.mvn/
-README.md
