@@ -2,6 +2,7 @@ package com.melodyguard.api.mapper;
 
 import java.util.List;
 
+import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -20,6 +21,7 @@ public interface UserMapper {
 	@Mapping(target = "id", source = "entity.id")
 	@Mapping(target = "createdAt", source = "entity.createdAt")
 	@Mapping(target = "updatedAt", source = "entity.updatedAt")
+	@IterableMapping(elementTargetType = UserDtoResp.class)
 	List<UserDtoResp> entitiesToDtos(List<User> entities);
 
 	User DtoToentity(UserDtoReq dto);

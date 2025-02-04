@@ -2,6 +2,7 @@ package com.melodyguard.api.mapper;
 
 import java.util.List;
 
+import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
 
 import com.melodyguard.api.dto.request.AlbumDtoReq;
@@ -12,6 +13,7 @@ import com.melodyguard.api.model.Album;
 public interface AlbumMapper {
 	AlbumDtoResp entityToDto(Album entity);
 
+	@IterableMapping(elementTargetType = AlbumDtoResp.class)
 	List<AlbumDtoResp> entitiesToDtos(List<Album> entities);
 
 	Album DtoToentity(AlbumDtoReq dto);
