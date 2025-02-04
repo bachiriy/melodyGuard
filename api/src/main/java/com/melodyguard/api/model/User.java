@@ -19,7 +19,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Document("users")
+@Document(collection = "users")
 @Getter
 @Setter
 @Builder

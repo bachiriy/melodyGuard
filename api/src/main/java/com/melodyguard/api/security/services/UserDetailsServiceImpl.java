@@ -2,7 +2,6 @@ package com.melodyguard.api.security.services;
 
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,8 +14,12 @@ import com.melodyguard.api.repository.UserRepository;
 @Component
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-	@Autowired
+	
 	private UserRepository repository;
+
+	public UserDetailsServiceImpl(UserRepository repository) {
+		this.repository = repository;
+	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

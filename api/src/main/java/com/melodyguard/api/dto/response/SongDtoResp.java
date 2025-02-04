@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 public class SongDtoResp {
-	private String ID;
+	private String id;
 
 	private String title;
 

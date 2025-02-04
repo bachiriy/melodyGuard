@@ -13,7 +13,6 @@ import com.melodyguard.api.model.Song;
 @Mapper(componentModel = "spring")
 public interface SongMapper {
 
-	@Mapping(target = "ID", source = "entity.id")
 	SongDtoResp entityToDto(Song entity);
 
 	@IterableMapping(elementTargetType = SongDtoResp.class)

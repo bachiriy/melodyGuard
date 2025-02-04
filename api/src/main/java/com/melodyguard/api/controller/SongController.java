@@ -28,7 +28,7 @@ public class SongController {
 	private ISongService service;
 
 	@Secured("ROLE_USER")
-	@GetMapping("/user/Songs")
+	@GetMapping("/user/songs")
 	public ResponseEntity<?> index(@RequestParam(defaultValue = "0", name = "page") Integer page) {
 		return ResponseEntity.ok(service.getAll(page));
 	}

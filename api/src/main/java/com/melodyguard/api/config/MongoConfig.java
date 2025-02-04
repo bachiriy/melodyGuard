@@ -10,7 +10,7 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 
 @Configuration
-@EnableMongoRepositories(basePackages = "io.benfill.isdb.repository")
+@EnableMongoRepositories(basePackages = "com.melodyguard.api.repository")
 public class MongoConfig {
 
 	@Value("${spring.data.mongodb.uri:mongodb://localhost:27017}")
